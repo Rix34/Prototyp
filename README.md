@@ -1,4 +1,4 @@
-# Prototyp
+# Prototyp RTS
 
 Sprint 1 24.11.2022
 
