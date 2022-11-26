@@ -9,9 +9,12 @@
 - [ ] System wskaż i kliknij
 - [ ] AI chodzenie po wyznaczonej ścieżce
 
-## Input Menager System(New)
-
-Player movement = Camera movement
+## CameraMovement
+1. Using Input Menager System(New)
+2. Basic movement
+  - Mouse movement
+  - Zoom on Scroll
+  - Rotate by click + Alt?
 
 
 
