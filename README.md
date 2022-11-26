@@ -1,6 +1,6 @@
 # Prototyp RTS
 
-Sprint 1 24.11.2022
+######Sprint 1 24.11.2022
 
 Core system mechanics:
 
@@ -8,6 +8,9 @@ Core system mechanics:
 - System Wybierania
 - System wskaż i kliknij
 - AI chodzenie po wyznaczonej ścieżce
+
+
+
 
 ______________________________________
 - Klasa surowców
