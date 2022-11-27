@@ -10,16 +10,18 @@
 - [ ] AI chodzenie po wyznaczonej ścieżce
 
 ## CameraMovement
-1. Using Input Menager System(New)
-2. Basic movement
-  - Mouse movement
-  - Zoom on Scroll
-  - Rotate by click + Alt?
+### Using Input Menager System(New)
+- [x] Basic movement
+  - WASD movement
+  - Zooming
+  - Rotating
+  - ScreenEdge movement
+  - Draging movement
 
 
 
 
-- [ ] Klasa surowców
+
 
 
 
