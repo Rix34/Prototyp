@@ -865,6 +865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2102907212}
   - component: {fileID: 2102907214}
+  - component: {fileID: 2102907215}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -900,14 +901,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50640ce19e6c9cb45b648727eb76e62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 15
+  worldBorder: {x: 50, y: 50}
+  maxSpeed: 10
   acceleration: 10
-  damping: 5
+  damping: 15
   stepSize: 2
   zoomDampening: 7.5
   minHeight: 10
   maxHeight: 50
   zoomSpeed: 2
-  maxRotationSpeed: 0.1
-  edgeTolerance: 0.1
+  maxRotationSpeed: 1
+  edgeTolerance: 0.05
   useScreenEdge: 1
+--- !u!114 &2102907215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102907210}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3286af51d7f074a9739c8b41024835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camspeed: 20
+  edgeTolerance: 0.05
+  scrollSpeed: 200
+  worldBorderCam: {x: 10, y: 10}

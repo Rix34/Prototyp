@@ -10,6 +10,10 @@ public class CameraController : MonoBehaviour
     private InputAction movementCamera;
     private Transform cameraTransform;
 
+    [Header("WorldBorder")]
+    [SerializeField]
+    public Vector2 worldBorder;
+
     [Header("Horizontal motion")]
     [SerializeField]
     private float maxSpeed = 5f;
@@ -70,6 +74,7 @@ public class CameraController : MonoBehaviour
         cameraInputs.CameraActions.ZoomCamera.performed += ZoomCamera;
 
         cameraInputs.CameraActions.Enable();
+        
     }
 
     private void OnDisable()
@@ -103,11 +108,12 @@ public class CameraController : MonoBehaviour
     private void GetKeyboardMovement()
     {
         Vector3 inputValue = movementCamera.ReadValue<Vector2>().x * GetCameraRight() + movementCamera.ReadValue<Vector2>().y * GetCameraForward();
-
+        
         inputValue = inputValue.normalized;
 
         if (inputValue.sqrMagnitude > 0.1f)
             targetlookPosition += inputValue;
+       
     }
 
     private Vector3 GetCameraRight()
@@ -125,17 +131,29 @@ public class CameraController : MonoBehaviour
 
     private void UpdateBasePosition()
     {
+       
+
         if (targetlookPosition.sqrMagnitude > 0.1f)
         {
+            
             speed = Mathf.Lerp(speed, maxSpeed, Time.deltaTime * acceleration);
             transform.position += targetlookPosition * speed * Time.deltaTime;
+           // targetlookPosition.x = Mathf.Clamp(targetlookPosition.x, -worldBorder.x, worldBorder.x);
+            //targetlookPosition.z = Mathf.Clamp(targetlookPosition.z, -worldBorder.y, worldBorder.y);
+           // transform.position = targetlookPosition;
+
         }
         else
         {
             horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, Time.deltaTime * damping);
             transform.position += horizontalVelocity * Time.deltaTime;
+          //  targetlookPosition.x = Mathf.Clamp(targetlookPosition.x, -worldBorder.x, worldBorder.x);
+            //targetlookPosition.z = Mathf.Clamp(targetlookPosition.z, -worldBorder.y, worldBorder.y);
+           // transform.position = targetlookPosition;
         }
-        targetlookPosition = Vector3.zero;      
+       
+
+       targetlookPosition = Vector3.zero;      
     }
 
     private void CheckMouseAtScreen() 
@@ -154,23 +172,17 @@ public class CameraController : MonoBehaviour
             moveDirection += GetCameraForward();
 
         targetlookPosition += moveDirection;
+       
     }
 
     private void RotateCamera(InputAction.CallbackContext inputValue)
     {
         if (!Mouse.current.middleButton.isPressed)
-        {
-            cameraInputs.CameraActions.MovementCamera.Enable();
-            useScreenEdge = true;
-        }
-        else
-        {
-            cameraInputs.CameraActions.MovementCamera.Disable();
-            useScreenEdge = false;
+            return;
 
             float value = inputValue.ReadValue<Vector2>().x;
             transform.rotation = Quaternion.Euler(0f, value * maxRotationSpeed + transform.rotation.eulerAngles.y, 0f);
-        }
+        
 
     }
 
@@ -191,7 +203,9 @@ public class CameraController : MonoBehaviour
     {
         Vector3 zoomTarget = new Vector3(cameraTransform.localPosition.x, zoomHeight, cameraTransform.localPosition.z);
 
-        zoomTarget -= zoomSpeed * (zoomHeight - cameraTransform.localPosition.y) * Vector3.forward;
+
+        // Making arc flight movement illusion
+       // zoomTarget -= zoomSpeed * (zoomHeight - cameraTransform.localPosition.y) * Vector3.forward;
 
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomTarget, Time.deltaTime * zoomDampening);
         cameraTransform.LookAt(this.transform);
