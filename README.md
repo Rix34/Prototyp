@@ -30,6 +30,12 @@ ___
 Unity's "NEW" Input System with C# Events
 https://www.youtube.com/watch?v=YHC-6I_LSos&ab_channel=OneWheelStudio
 
+## Why shoud we using Unity Input System:
+https://www.youtube.com/watch?v=GyKBoDF_Oxo
+
+##Used to make movement tutorial:
+https://www.youtube.com/watch?v=SeBEvM2zMpY&list=LL&index=3
+
 
 
 
