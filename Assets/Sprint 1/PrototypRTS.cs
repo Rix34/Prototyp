@@ -53,6 +53,33 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e1a4cb8-9547-46c2-a333-f94720733c86"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""894a786b-3d6c-4a97-a65e-8249c8546c91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""8583e93c-e638-4b99-968c-691e14410c74"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +300,72 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9233b8a9-2f9a-41f3-897e-f108cb562ccd"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d30953ae-af63-4832-a13c-4bff3cb93669"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72eec507-2a46-4645-9ac6-43aeac2ece3a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9d65794-1479-41f9-a7c2-6a7677c3e97a"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""569e5e44-22cf-4d99-9149-5aca9a4abf6e"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f2fde8b-8195-46cf-9caa-b8f3cbd6101c"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -863,6 +956,9 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -937,6 +1033,9 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_Use;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @PrototypRTS m_Wrapper;
@@ -944,6 +1043,9 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @Use => m_Wrapper.m_Player_Use;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -962,6 +1064,15 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -975,6 +1086,15 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -1134,6 +1254,9 @@ public partial class @PrototypRTS : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

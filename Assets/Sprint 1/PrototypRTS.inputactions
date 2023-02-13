@@ -31,6 +31,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "8e1a4cb8-9547-46c2-a333-f94720733c86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "894a786b-3d6c-4a97-a65e-8249c8546c91",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "8583e93c-e638-4b99-968c-691e14410c74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -251,6 +278,72 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9233b8a9-2f9a-41f3-897e-f108cb562ccd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d30953ae-af63-4832-a13c-4bff3cb93669",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72eec507-2a46-4645-9ac6-43aeac2ece3a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9d65794-1479-41f9-a7c2-6a7677c3e97a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "569e5e44-22cf-4d99-9149-5aca9a4abf6e",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f2fde8b-8195-46cf-9caa-b8f3cbd6101c",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
